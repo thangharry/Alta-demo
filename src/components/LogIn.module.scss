@@ -1,0 +1,113 @@
+.bgLogIn {
+    // width: 100vh;
+    min-height: 100vh;
+    background-color: #1e1e2e;
+    padding: 11.6rem 0 5.1rem 0;
+    .wrap_bd {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .wrap_img {
+        width: 18rem;
+        margin: 0;
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+    h4 {
+        margin: 4rem 0 2.8rem 0;
+        color: #fff;
+        font-size: 3.6rem;
+        font-weight: 700;
+        line-height: 4.8rem;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: left;
+        label {
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            font-size: 1.4rem;
+            color: #fff;
+        }
+        .user,
+        .pass {
+            width: 47.1rem;
+            height: 4.8rem;
+            background-color: #2b2b3f;
+            border: 0.1rem solid #727288;
+            border-radius: 0.8rem;
+            color: #f5f5ff;
+            font-size: 1.6rem;
+            &::placeholder {
+                color: #f5f5ff !important;
+            }
+            &:focus {
+                background-color: #2b2b3f;
+                color: #f5f5ff;
+                border: 0.1rem solid #347aff;
+            }
+            &:first-of-type {
+                margin-bottom: 2rem;
+            }
+        }
+        .checkBox {
+            input {
+                width: 2.4rem;
+                height: 2.4rem;
+                background-color: #2b2b3f;
+                border: 0.1rem solid #347aff;
+            }
+            label {
+                margin: 0.4rem 0 0 0.8rem;
+            }
+        }
+        .buttonSubmit {
+            margin: 4.8rem auto 0;
+            width: 16rem;
+            height: 4rem;
+            // padding: 1.6rem 2.4rem;
+            background-color: #ff7506;
+            border: none;
+            border-radius: 0.8rem;
+
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 400;
+            line-height: 2.4rem;
+        }
+        .inputPass {
+            position: relative;
+        }
+        .hiddenPass {
+            position: absolute;
+
+            top: 50%;
+            right: 1rem;
+            transform: translateY(-40%);
+            button {
+                border: none;
+                font-size: 2rem;
+                color: #ff7506;
+                &:hover {
+                    background-color: #2b2b3f;
+                }
+            }
+        }
+        .messag {
+            margin-bottom: 2rem;
+            color: #ff4747;
+            font-size: 1.6rem;
+        }
+        .notice {
+            border: 0.1rem solid #ff4747;
+        }
+    }
+}
