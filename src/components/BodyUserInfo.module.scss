@@ -1,3 +1,134 @@
 .bodyUser {
-    background-color: yellow;
+    h1 {
+        color: #f5f5ff;
+        font-size: 3.6rem;
+        font-weight: 700;
+    }
+    .Info_Ava {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-top: 5rem;
+        .bodyAva {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 16rem;
+            .thumbAva {
+                position: relative;
+                width: 22rem;
+                .IconCamer {
+                    position: absolute;
+                    bottom: 0;
+                    right: 3rem;
+                    svg {
+                        width: 3.5rem;
+                        height: 3.5rem;
+                        color: #fff;
+                    }
+                }
+            }
+            img {
+                width: 100%;
+                border-radius: 50%;
+                object-fit: contain;
+            }
+            h2 {
+                margin-top: 2rem;
+                color: #f5f5ff;
+                font-size: 2rem;
+                font-weight: 600;
+            }
+        }
+        .FormInfo {
+            form {
+                label {
+                    color: #ffff;
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                }
+                .ItemInputAva ~ .ItemInputAva {
+                    margin-top: 2.5rem;
+                }
+                input {
+                    // width: 24rem;
+                    height: 3.3rem;
+                    background-color: #2b2b3f;
+                    color: #f5f5ff;
+                    font-size: 1.6rem;
+                    &::placeholder {
+                    }
+                }
+                .Admin {
+                    width: 50%;
+                }
+            }
+        }
+        .Setting_Info {
+            position: relative;
+            top: 0;
+            right: 0;
+            margin-left: auto;
+            background-color: #2f2f41;
+            border-top-left-radius: 0.8rem;
+            border-bottom-left-radius: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            .edit_info {
+                width: 95%;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                cursor: pointer;
+                & ~ .edit_info {
+                    margin-top: 1rem;
+                }
+                figure {
+                    width: 3.4rem;
+                    height: 3.4rem;
+                    padding: 0rem;
+                    background-color: rgba(114, 114, 136, 0.5);
+                    border-radius: 50%;
+                    img {
+                        margin-top: 0.5rem;
+                        width: 60%;
+                        object-fit: contain;
+                    }
+                }
+                p {
+                    margin-top: 0.5rem;
+                    color: #fff;
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
+.groupBtn {
+    margin-top: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    & > button:nth-child(1) {
+        color: #ff7506;
+        border: 0.1rem solid #ff7506;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+    & > button:nth-child(2) {
+        margin-left: 3rem;
+        background-color: #ff7506;
+        border: 0.1rem solid #ff7506;
+    }
+    button {
+        width: 14rem;
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
 }

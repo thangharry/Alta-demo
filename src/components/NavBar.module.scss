@@ -1,3 +1,55 @@
 .wrapNavBar {
-    background-color: red;
+    padding-top: 4rem;
+    min-height: 100% !important;
+    width: 10rem !important;
+    background-color: #020220;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    .wrapImg {
+        width: 8rem;
+        img {
+            object-fit: cover;
+            width: 100%;
+        }
+    }
+    .ListNav {
+        margin-top: 10rem;
+        .ComponentNav {
+            padding: 0;
+        }
+        .bodyNav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            font-size: 1.4rem;
+            color: #c8c8db;
+        }
+        .itemNav {
+            position: relative;
+
+            .desc {
+                display: inline-block;
+                position: absolute;
+                top: 50%;
+
+                left: -1rem;
+                transform: translateY(-60%);
+                width: 0.5rem;
+                height: 7.2rem;
+                background-color: #ff7506;
+            }
+        }
+        .BaCham {
+            position: absolute;
+            top: 50%;
+            right: -1rem;
+            transform: translateY(-50%);
+        }
+        .itemNav ~ .itemNav {
+            margin-top: 2.4rem;
+        }
+    }
 }

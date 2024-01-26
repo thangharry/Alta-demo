@@ -6,13 +6,16 @@ import styles from "./UserInfo.module.scss";
 import BodyUserInfo from "../components/BodyUserInfo";
 function UserInfo() {
     return (
-        <div style={{ backgroundColor: "#1e1e2e", minHeight: "100vh" }}>
+        <div
+            style={{
+                backgroundColor: "#1E1E2E",
+                minHeight: "calc(100% - 85px)",
+                paddingLeft: "3rem",
+            }}
+        >
             <Container className={styles.containerUser}>
                 <Row className={styles.wrapUser}>
-                    <Col xs={2}>
-                        <NavBar />
-                    </Col>
-                    <Col>
+                    <Col style={{ padding: "0" }}>
                         <BodyUserInfo />
                     </Col>
                 </Row>

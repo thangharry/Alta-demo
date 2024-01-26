@@ -2,7 +2,9 @@
     // width: 100vh;
     min-height: 100vh;
     background-color: #1e1e2e;
-    padding: 11.6rem 0 5.1rem 0;
+    .container_bg {
+        padding: 5rem 0 5rem 0;
+    }
     .wrap_bd {
         display: flex;
         flex-direction: column;
@@ -108,6 +110,17 @@
         }
         .notice {
             border: 0.1rem solid #ff4747;
+        }
+    }
+    .wrapForGot {
+        a {
+            text-decoration: none;
+            .forgotPass {
+                margin-top: 10rem;
+                font-size: 1.6rem;
+                color: #ff7506;
+                border-bottom: 0.1rem solid #ff7506;
+            }
         }
     }
 }

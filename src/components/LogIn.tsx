@@ -7,14 +7,24 @@ import { Link } from "react-router-dom";
 import { FaEye } from "react-icons/fa6";
 import { FaEyeSlash } from "react-icons/fa6";
 import { ChangeEvent, useState } from "react";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    getAuth,
+    // setPersistence,
+    // browserLocalPersistence,
+} from "firebase/auth";
 import { auth } from "../firebase/Firebaseconfig";
+import { FirebaseError } from "firebase/app";
+import ForgotPass from "./ForgotPass";
+import TopHeader from "./TopHeader";
 function LogIn() {
     let [isHiddenPass, setisHiddenPass] = useState(false);
 
     let [email, setemail] = useState("");
     let [password, setPassword] = useState("");
     let [message, setmessage] = useState("");
+    let [remberPass, setremberPass] = useState(false);
 
     let handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
         let emailInput = e.target.value;
@@ -30,6 +40,7 @@ function LogIn() {
     let handleChangePass = (e: ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
     };
+    // let auth = getAuth();
 
     let handleClick = async (e: React.MouseEvent) => {
         e.preventDefault();
@@ -37,18 +48,37 @@ function LogIn() {
             setmessage("Hãy nhập tài khoản và mật khẩu");
         } else {
             try {
+                // if (remberPass) {
+                //     await setPersistence(auth, browserLocalPersistence);
+                // }
                 await createUserWithEmailAndPassword(auth, email, password);
                 setemail("");
                 setPassword("");
                 setmessage("");
                 window.location.href = "/Userinfo";
             } catch (error) {
+                setmessage("Sai tên đăng nhập hoặc mật khẩu");
                 console.log(error);
+                const errorCode = (error as FirebaseError).code;
+                if (errorCode === "auth/email-already-in-use") {
+                    try {
+                        await signInWithEmailAndPassword(auth, email, password);
+                        setemail("");
+                        setPassword("");
+                        setmessage("");
+                        window.location.href = "/Userinfo";
+                    } catch (error) {
+                        console.log(error);
+                        setmessage("Sai tên đăng nhập hoặc mật khẩu");
+                    }
+                }
             }
         }
     };
+
     return (
         <div className={styles.bgLogIn}>
+            <TopHeader />
             <Container className={styles.container_bg}>
                 <Row>
                     <Col>
@@ -122,6 +152,10 @@ function LogIn() {
                                         className={styles.checkBox}
                                         type="checkbox"
                                         label="Ghi nhớ mật khẩu"
+                                        checked={remberPass}
+                                        onChange={(e) => {
+                                            setremberPass(e.target.checked);
+                                        }}
                                     />
                                 </Form.Group>
 
@@ -133,9 +167,15 @@ function LogIn() {
                                     }}
                                 >
                                     Đăng nhập
-                                    {/* <Link to="">Đăng nhập</Link> */}
                                 </Button>
                             </Form>
+                            <div className={styles.wrapForGot}>
+                                <Link to="/forgotPass">
+                                    <p className={styles.forgotPass}>
+                                        Quên mật khẩu ?
+                                    </p>
+                                </Link>
+                            </div>
                         </div>
                     </Col>
                 </Row>

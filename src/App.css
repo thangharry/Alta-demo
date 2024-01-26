@@ -29,3 +29,29 @@ h6 {
 a {
     text-decoration: none;
 }
+.App {
+    .container_App {
+        margin: 0;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .Nav,
+    .body_main {
+        padding: 0;
+    }
+
+    .body_main {
+        width: 100%;
+        min-height: 100%;
+    }
+
+    .topHeader {
+        /* padding: 2.4rem 0 1.6rem; */
+        padding-bottom: 1rem;
+        background-color: #1e1e2e;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+}

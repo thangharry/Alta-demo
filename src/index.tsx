@@ -8,6 +8,10 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LogIn from "./components/LogIn";
 import UserInfo from "./pages/UserInfo";
+import ForgotPass from "./components/ForgotPass";
+import ErrorLogIn from "./components/ErrorLogIn";
+import RecoveryPass from "./components/RecoveryPass";
+import KhoBanGhi from "./pages/KhoBanGhi";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -16,9 +20,15 @@ root.render(
     <React.StrictMode>
         <BrowserRouter>
             <Routes>
+                <Route index element={<LogIn />} />
+                <Route path="forgotPass" element={<ForgotPass />} />
+                <Route path="errorLogin" element={<ErrorLogIn />} />
+                <Route path="recPass" element={<RecoveryPass />} />
                 <Route path="/" element={<App />}>
-                    <Route index element={<LogIn />} />
+                    <Route path="Kho bản ghi" element={<KhoBanGhi />} />
                     <Route path="Userinfo" element={<UserInfo />} />
+
+                    {/* <Route path="Kho bản ghi" element={<KhoBanGhi />} /> */}
                 </Route>
             </Routes>
         </BrowserRouter>

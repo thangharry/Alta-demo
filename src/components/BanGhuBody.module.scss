@@ -1,0 +1,65 @@
+.body_Table {
+    margin-top: 2.4rem;
+}
+.wrap_input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    .GroupInput {
+        padding: 0;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+        label {
+            display: inline;
+            margin-right: 1.6rem;
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+        select {
+            display: inline;
+            width: 8rem;
+            background-color: #1e1e2e;
+            border: 0.1rem solid #ff7506;
+            color: #fff;
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+    }
+}
+.GroupInput ~ .GroupInput {
+    margin-left: 3rem;
+}
+.wrap_table {
+    margin-top: 2.4rem;
+    width: 90%;
+    table {
+        tr,
+        td,
+        th {
+            background-color: rgba(47, 47, 65, 0.7) !important;
+            padding: 1.4rem 0.5rem;
+        }
+        td,
+        th {
+            border: none;
+        }
+        thead {
+            tr {
+                border: none;
+            }
+        }
+        th {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ff7506 !important;
+        }
+        td {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #fff !important;
+        }
+    }
+}
