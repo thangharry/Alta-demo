@@ -12,6 +12,8 @@ import ForgotPass from "./components/ForgotPass";
 import ErrorLogIn from "./components/ErrorLogIn";
 import RecoveryPass from "./components/RecoveryPass";
 import KhoBanGhi from "./pages/KhoBanGhi";
+import QuanLy from "./pages/QuanLy";
+import DanhsachHopDong from "./components/DanhsachHopDong";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -26,6 +28,12 @@ root.render(
                 <Route path="recPass" element={<RecoveryPass />} />
                 <Route path="/" element={<App />}>
                     <Route path="Kho bản ghi" element={<KhoBanGhi />} />
+                    <Route path="Quản lý" element={<QuanLy />} />
+                    <Route
+                        path="Quản lý hợp đồng"
+                        element={<DanhsachHopDong />}
+                    />
+
                     <Route path="Userinfo" element={<UserInfo />} />
 
                     {/* <Route path="Kho bản ghi" element={<KhoBanGhi />} /> */}

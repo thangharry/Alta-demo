@@ -20,14 +20,22 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 function NavBar() {
     let [click, setclick] = useState(-1);
+    let [expanded, setExpanded] = useState(-1);
     let handleClick = (index: number) => {
         setclick(index);
     };
+    let handleExpand = (index: number) => {
+        setExpanded(expanded === index ? -1 : index);
+    };
 
+    let handlesubClick = () => {
+        setExpanded(-1);
+    };
     type ListType = {
         img: any;
         text: string;
         selectionImg: any;
+        subItems?: string[];
     };
     let ItemLisTNav: ListType[] = [
         { img: banGhi, text: "Kho bản ghi", selectionImg: banGhiHover },
@@ -45,21 +53,40 @@ function NavBar() {
             img: quanLy,
             text: "Quản lý",
             selectionImg: quanLyHover,
+            subItems: [
+                "Quản lý hợp đồng",
+                "Quản lý thiết bị",
+                "Đơn vị ủy quyền",
+                "Đơn vị sử dụng",
+            ],
         },
         {
             img: doanhThu,
             text: "Doanh thu",
             selectionImg: doanhThuHover,
+            subItems: [
+                "Báo cáo doanh thu",
+                "Lịch sử đối soát",
+                "Phân phối doanh thu",
+            ],
         },
         {
             img: setting,
             text: "Cài đặt",
             selectionImg: settingHover,
+            subItems: [
+                "Phân quyền người dùng",
+                "Cấu hình",
+                "Quản lý hợp đồng",
+                "Thông tin tác phẩm",
+                "Chu kì đối soát",
+            ],
         },
         {
             img: supp,
             text: "Hỗ trợ",
             selectionImg: suppHover,
+            subItems: ["Hướng dẫn sử dụng", "Tải app", "Feedback"],
         },
     ];
     return (
@@ -71,6 +98,7 @@ function NavBar() {
                 <ul className={styles.ComponentNav}>
                     {ItemLisTNav.map((item, index) => {
                         const isSelected = index === click;
+                        const isExplane = index === expanded;
                         return (
                             <li
                                 className={styles.itemNav}
@@ -107,11 +135,39 @@ function NavBar() {
                                     </p>
                                 </Link>
                                 {index >= 3 && (
-                                    <span className={styles.BaCham}>
+                                    <span
+                                        className={styles.BaCham}
+                                        onClick={() => handleExpand(index)}
+                                    >
                                         <figure>
-                                            <img src={baCham} alt="" />
+                                            <img
+                                                src={
+                                                    isSelected
+                                                        ? baChamHover
+                                                        : baCham
+                                                }
+                                                alt=""
+                                            />
                                         </figure>
                                     </span>
+                                )}
+                                {isExplane && item.subItems && (
+                                    <ul className={styles.ExpalneUL}>
+                                        {item.subItems.map(
+                                            (subItem, subIndex) => (
+                                                <Link
+                                                    to={`${subItem}`}
+                                                    onClick={() =>
+                                                        handlesubClick()
+                                                    }
+                                                >
+                                                    <li key={subIndex}>
+                                                        {subItem}
+                                                    </li>
+                                                </Link>
+                                            )
+                                        )}
+                                    </ul>
                                 )}
                             </li>
                         );
