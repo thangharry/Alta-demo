@@ -17,8 +17,10 @@ import baChamHover from "../images/u_ellipsis-v (1).png";
 import styles from "./NavBar.module.scss";
 import logo from "../images/logo.png";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { NavBarContext } from "../NavBarProvider";
 function NavBar() {
+    // const { isNavBarVisible} = useContext(NavBarContext)
     let [click, setclick] = useState(-1);
     let [expanded, setExpanded] = useState(-1);
     let handleClick = (index: number) => {

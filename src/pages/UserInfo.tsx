@@ -10,6 +10,7 @@ function UserInfo() {
             style={{
                 backgroundColor: "#1E1E2E",
                 minHeight: "calc(100% - 85px)",
+                // minHeight: "100%",
                 paddingLeft: "3rem",
             }}
         >

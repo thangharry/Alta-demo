@@ -1,5 +1,6 @@
 import BanGhiHeader from "../components/BanGhiHeader";
 import BanGhuBody from "../components/BanGhuBody";
+import NavBar from "../components/NavBar";
 
 function KhoBanGhi() {
     return (

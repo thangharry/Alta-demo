@@ -1,32 +1,41 @@
 import "./reset.css";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 import NavBar from "./components/NavBar";
-import { Container, Row, Col } from "react-bootstrap";
 import TopHeader from "./components/TopHeader";
 import User from "./components/User";
 import AvatarProvider from "./avatar";
 import UserProvider from "./user";
+import { useState } from "react";
+import { NavBarContext } from "./NavBarProvider";
 function App() {
+    const [showNav, setShowNav] = useState(true);
+    const location = useLocation();
     return (
         <AvatarProvider>
             <UserProvider>
-                <div className="App">
-                    <div className="container_App">
-                        <div className="Nav">
-                            <NavBar />
-                        </div>
-                        <div className="body_main">
-                            <div className="topHeader">
-                                <TopHeader />
-                                <User />
+                <NavBarContext.Provider value={{ showNav, setShowNav }}>
+                    <div className="App">
+                        <div className="container_App">
+                            <div className="Nav">
+                                {showNav &&
+                                    location.pathname !== "/addhopdong" && (
+                                        <NavBar />
+                                    )}
+                                {/* <NavBar /> */}
                             </div>
-                            <Outlet />
+                            <div className="body_main">
+                                <div className="topHeader">
+                                    <TopHeader />
+                                    <User />
+                                </div>
+                                <Outlet />
+                            </div>
                         </div>
                     </div>
-                </div>
+                </NavBarContext.Provider>
             </UserProvider>
         </AvatarProvider>
     );

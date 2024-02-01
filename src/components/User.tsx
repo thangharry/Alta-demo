@@ -19,7 +19,6 @@ function User() {
                     <div className={styles.userInfo}>
                         <h5>
                             {firstName} {lastName}
-                            {/* aaaa */}
                         </h5>
                         <p>Admin</p>
                     </div>
