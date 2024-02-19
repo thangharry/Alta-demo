@@ -21,9 +21,8 @@ function App() {
                         <div className="container_App">
                             <div className="Nav">
                                 {showNav &&
-                                    location.pathname !== "/addhopdong" && (
-                                        <NavBar />
-                                    )}
+                                    location.pathname !== "/addhopdong" &&
+                                    "/BanGhi" && <NavBar />}
                                 {/* <NavBar /> */}
                             </div>
                             <div className="body_main">

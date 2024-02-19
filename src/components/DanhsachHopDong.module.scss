@@ -13,7 +13,7 @@
         border-radius: 2.4rem;
     }
     button {
-        background-color: #b65100;
+        background-color: transparent;
         border-radius: 2.4rem;
         padding: 1rem;
         min-width: 50%;
@@ -122,6 +122,75 @@
         }
         option {
             color: black;
+        }
+    }
+}
+table,
+tr {
+    border-top: none;
+    border: 0.1rem solid #2f2f41b2;
+}
+table {
+    td,
+    th {
+        background-color: #2f2f41b2 !important;
+        padding: 2rem 1rem !important;
+    }
+    th {
+        color: #ffac69 !important;
+        font-size: 1.4rem;
+        font-weight: 700;
+    }
+    td {
+        color: #ffffff !important;
+        // font-size: 1.2rem;
+        font-weight: 400;
+        a {
+            color: #ff7506;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+    }
+}
+.color {
+    background-color: #b65100 !important;
+}
+.footerBody {
+    margin: 5rem 0;
+    .wrapBody {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .footerLeft {
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: #f5f5ff;
+        p {
+            span {
+                margin: 0 0.6rem;
+                padding: 0.5rem;
+                border: 0.1rem solid #ff7506;
+            }
+        }
+    }
+    .footerRight {
+        display: flex;
+        justify-content: center;
+        .pagination {
+            border: none;
+        }
+        li {
+            a {
+                border: none;
+                background-color: transparent !important;
+                color: #f5f5ff;
+                font-size: 1.4rem;
+                font-weight: 400;
+            }
+            & :active {
+                background-color: #ff750680 !important;
+            }
         }
     }
 }

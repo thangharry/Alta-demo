@@ -17,32 +17,32 @@ function BanGhuBody() {
     let [isrc, setisrc] = useState("");
     let [casi, setcasi] = useState("");
 
-    let uploadVideo = () => {
-        if (videoUpload == null) return;
-        const metadata = {
-            contentType: "audio/mpeg",
-            customMetadata: {
-                title: title,
-                isrc: isrc,
-                casi: casi,
-            },
-        };
-        const videoRef = ref(storage, `images/${videoUpload.name + v4()}`);
-        uploadBytes(videoRef, videoUpload, metadata).then(() => {
-            getDownloadURL(videoRef).then((downloadURL) => {
-                // Lưu URL tải xuống và thông tin khác vào Firestore
-                const musicCollection = collection(db, "music");
-                addDoc(musicCollection, {
-                    title: title,
-                    isrc: isrc,
-                    casi: casi,
-                    videoURL: downloadURL,
-                });
-            });
+    // let uploadVideo = () => {
+    //     if (videoUpload == null) return;
+    //     const metadata = {
+    //         contentType: "audio/mpeg",
+    //         customMetadata: {
+    //             title: title,
+    //             isrc: isrc,
+    //             casi: casi,
+    //         },
+    //     };
+    //     const videoRef = ref(storage, `images/${videoUpload.name + v4()}`);
+    //     uploadBytes(videoRef, videoUpload, metadata).then(() => {
+    //         getDownloadURL(videoRef).then((downloadURL) => {
+    //             // Lưu URL tải xuống và thông tin khác vào Firestore
+    //             const musicCollection = collection(db, "music");
+    //             addDoc(musicCollection, {
+    //                 title: title,
+    //                 isrc: isrc,
+    //                 casi: casi,
+    //                 videoURL: downloadURL,
+    //             });
+    //         });
 
-            alert("Tải lên video");
-        });
-    };
+    //         alert("Tải lên video");
+    //     });
+    // };
 
     // lấy dữ liệu
     const [musicData, setmusicData] = useState<
@@ -163,7 +163,7 @@ function BanGhuBody() {
                 </Table>
             </div>
 
-            <div className={styles.uploadFile}>
+            {/* <div className={styles.uploadFile}>
                 <input
                     type="text"
                     placeholder="Tên bài hát"
@@ -198,7 +198,7 @@ function BanGhuBody() {
                     }}
                 />
                 <button onClick={() => uploadVideo()}>tải video lên</button>
-            </div>
+            </div> */}
         </div>
     );
 }

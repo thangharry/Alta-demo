@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./DanhsachHopDong.module.scss";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "react-bootstrap";
@@ -6,7 +6,83 @@ import Form from "react-bootstrap/Form";
 import { IoIosSearch } from "react-icons/io";
 import Table from "react-bootstrap/Table";
 import { IoMdAdd } from "react-icons/io";
+import {
+    collection,
+    getDocs,
+    query,
+    orderBy,
+    startAfter,
+    limit,
+    doc,
+} from "firebase/firestore";
+import { db } from "../firebase/Firebaseconfig";
+import Pagination from "react-bootstrap/Pagination";
+import "firebase/firestore";
+import firebase from "firebase/app";
 function DanhsachHopDong() {
+    const [selectedBTN, setSelectedBTN] = useState<string | null>("uyQuyen");
+
+    const [contracts, setContracts] = useState<any[]>([]);
+    const [lastDoc, setLastDoc] = useState<any | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            // tham chiếu đến 1 collection trong firebase
+            const contractCollection = collection(db, "yourCollection");
+            // lấy giá trị trong collection đã tham chiếu
+            const contractSnapshot = await getDocs(contractCollection);
+            const contractList = contractSnapshot.docs.map((doc) => doc.data());
+            setContracts(contractList);
+        };
+        fetchData();
+    }, []);
+
+    const fetchContracts = async (lastDoc: any | null) => {
+        // dùng hàm query để truy vấn
+        let contractQuery = query(
+            // tham chiếu đến collection là yourCollection
+            collection(db, "yourCollection"),
+            // xắp số theo trường nguoiuyquyen
+            orderBy("nguoiUyQuyen"),
+            limit(15)
+        );
+
+        if (lastDoc) {
+            contractQuery = query(
+                collection(db, "yourCollection"),
+                orderBy("nguoiUyQuyen"),
+                startAfter(lastDoc),
+                limit(15)
+            );
+        }
+
+        const snapShot = await getDocs(contractQuery);
+        const lastVisible = snapShot.docs[snapShot.docs.length - 1];
+
+        setLastDoc(lastVisible);
+        const newContracts = snapShot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        // console.log(newContracts);
+        setContracts(newContracts);
+    };
+
+    useEffect(() => {
+        fetchContracts(null);
+    }, []);
+
+    const handleNextPage = () => {
+        fetchContracts(lastDoc);
+        setCurrentPage(currentPage + 1);
+    };
+
+    const handlePrePage = () => {
+        fetchContracts(lastDoc);
+        setCurrentPage(currentPage - 1);
+    };
+
     return (
         <div
             style={{
@@ -19,10 +95,20 @@ function DanhsachHopDong() {
             <h1>Danh sách hợp đồng</h1>
             <div className={styles.wrapbtnSwitch}>
                 <div className={styles.btn_switch}>
-                    <button>
+                    <button
+                        className={
+                            selectedBTN === "uyQuyen" ? styles.color : ""
+                        }
+                        onClick={() => setSelectedBTN("uyQuyen")}
+                    >
                         <Link to="/">Hợp đồng ủy quyền</Link>
                     </button>
-                    <button>
+                    <button
+                        className={
+                            selectedBTN === "khaiThac" ? styles.color : ""
+                        }
+                        onClick={() => setSelectedBTN("khaiThac")}
+                    >
                         <Link to="/">Hợp đồng khai thác</Link>
                     </button>
                 </div>
@@ -81,29 +167,33 @@ function DanhsachHopDong() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>HD123</td>
-                                        <td>Hợp đồng ủy quyền bài hát</td>
-                                        <td>Vương Anh Tú</td>
+                                    {contracts.map((contract, index) => {
+                                        console.log(contract.id);
+                                        return (
+                                            <tr>
+                                                <td>{index + 1}</td>
+                                                <td>{contract.soHopDong}</td>
+                                                <td>{contract.tenHopDong}</td>
+                                                <td>{contract.nguoiUyQuyen}</td>
 
-                                        <td>Người biểu diễn</td>
-                                        <td>Còn thòi hạn</td>
-                                        <td>1/4/2021 15:53</td>
-                                        <td>xem chi tiết</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>HD123</td>
-                                        <td>Hợp đồng ủy quyền bài hát</td>
-                                        <td>Vương Anh Tú</td>
-
-                                        <td>Người biểu diễn</td>
-                                        <td>Đã hủy</td>
-                                        <td>1/4/2021 15:53</td>
-                                        <td>xem chi tiết</td>
-                                        <td>Lý do hủy</td>
-                                    </tr>
+                                                <td>Người biểu diễn</td>
+                                                <td>
+                                                    {contract.trangThaiHopDong}
+                                                </td>
+                                                <td>
+                                                    {contract.ngayHieuluc}{" "}
+                                                    {contract.time}
+                                                </td>
+                                                <td>
+                                                    <Link
+                                                        to={`/DetailHopDong/${contract.id}`}
+                                                    >
+                                                        xem chi tiết
+                                                    </Link>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
                                 </tbody>
                             </Table>
                         </Row>
@@ -116,6 +206,40 @@ function DanhsachHopDong() {
                         </span>
                         <p>Thêm hợp đồng</p>
                     </Link>
+                </div>
+                <div className={styles.footerBody}>
+                    <Container>
+                        <Row className={styles.wrapBody}>
+                            <Col className={styles.footerLeft}>
+                                <p>
+                                    Hiển thị <span>15</span> hàng trong mỗi
+                                    trang
+                                </p>
+                            </Col>
+                            <Col className={styles.footerRight}>
+                                <Pagination className={styles.pagination}>
+                                    <Pagination.Prev
+                                        onClick={() => {
+                                            handlePrePage();
+                                        }}
+                                    />
+                                    <Pagination.Item active>
+                                        {1}
+                                    </Pagination.Item>
+                                    <Pagination.Item>{2}</Pagination.Item>
+                                    <Pagination.Item>{3}</Pagination.Item>
+                                    <Pagination.Ellipsis />
+
+                                    <Pagination.Item>{100}</Pagination.Item>
+                                    <Pagination.Next
+                                        onClick={() => {
+                                            handleNextPage();
+                                        }}
+                                    />
+                                </Pagination>
+                            </Col>
+                        </Row>
+                    </Container>
                 </div>
             </div>
         </div>

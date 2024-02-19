@@ -1,0 +1,188 @@
+.wrapAdd {
+    min-height: calc(100vh + 37rem);
+}
+.arrow {
+    position: absolute;
+    top: -15rem;
+    z-index: 2;
+
+    background-color: #020220;
+    display: flex;
+    align-items: center;
+    min-height: calc(100% + 15rem);
+    button {
+        background-color: transparent;
+        border: none;
+    }
+    svg {
+        color: #ff7506;
+        font-size: 3rem;
+    }
+}
+.bodyAdd {
+    color: #fff;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    padding-bottom: 30rem;
+    h1 {
+        color: #e5e5e5;
+        margin-bottom: 9rem;
+        font-size: 3.6rem;
+        font-weight: 700;
+    }
+    .infoBanGhi {
+        margin-left: 25%;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem;
+        background-color: #2b2b3f;
+        border-radius: 1rem;
+    }
+    .succes {
+        border-bottom: 0.1rem solid #c8c8db;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0 2rem 1rem;
+        margin-bottom: 2rem;
+        span {
+            margin-right: 1rem;
+            padding: 0.1rem;
+            background-color: #0fbf00;
+            border-radius: 50%;
+            svg {
+                font-size: 2.4rem;
+            }
+        }
+        p {
+            color: #fff;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+    }
+    .tableBanGhi {
+        & > p {
+            color: #fff;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+    }
+    .listTable {
+        font-size: 1.4rem;
+        li > b {
+            color: #ff7506;
+        }
+        p {
+            margin-left: 5rem;
+        }
+        & > li:nth-child(1) {
+            margin-bottom: 5rem;
+            button {
+                margin-left: 5rem;
+                border-radius: 0.7rem;
+                padding: 0.5rem 1.5rem;
+                font-size: 1.6rem;
+                font-weight: 600;
+                color: #fff;
+                background-color: #ff7506;
+                border: none;
+            }
+        }
+        & > li:nth-child(2) {
+            button {
+                margin-left: 5rem;
+                border-radius: 0.7rem;
+                padding: 0.5rem 1.5rem;
+                font-size: 1.6rem;
+                font-weight: 600;
+                color: #ff7506;
+                border: 0.1rem solid #ff7506;
+                background-color: transparent;
+            }
+        }
+    }
+    .noteBG {
+        margin-top: 3rem;
+        color: #ff4747;
+        font-size: 1.6rem;
+    }
+}
+.formbgc {
+    margin: 0 auto;
+    background-color: #3e3e5b;
+    width: 60rem;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    h1 {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    label {
+        color: #f5f5ff;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+    input {
+        background-color: #2b2b3f;
+        border: 0.1rem solid #727288;
+        font-size: 1.4rem;
+    }
+    select {
+        background-color: #2b2b3f;
+        border: 0.1rem solid #727288;
+        color: #f5f5ff;
+        font-size: 1.4rem;
+    }
+    .file {
+        margin: 2rem 0;
+    }
+    .colFile {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        p {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+    }
+    .Upload {
+        margin-left: 1rem;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #ffac69;
+        border: 0.1rem solid #ffac69;
+        border-radius: 0.7rem;
+        padding: 0.5rem 1rem;
+        svg {
+            margin-right: 0.5rem;
+            font-size: 2rem;
+        }
+    }
+}
+.groupBTN {
+    margin: 0 auto;
+    text-align: center;
+    button {
+        width: 12rem;
+        height: 4rem;
+        font-size: 1.6rem;
+    }
+    & button:nth-child(1) {
+        margin-right: 2rem;
+        color: #ff7506;
+        border: 0.1rem solid #ff7506;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+    & button:nth-child(2) {
+        border: 0.1rem solid #ff7506;
+        color: #fff;
+        background-color: #ff7506;
+    }
+}
