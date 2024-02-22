@@ -22,7 +22,10 @@ function AddHopDong() {
     };
     const navigate = useNavigate();
     const [formValid, setFormValid] = useState(false);
-
+    const [hopDongId, setHopDongID] = useState<string | null>(null);
+    useEffect(() => {
+        console.log(hopDongId);
+    }, [hopDongId]);
     let handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // lấy form thông tin hiện tại
@@ -57,6 +60,7 @@ function AddHopDong() {
         const docId = Date.now().toString();
         const currentDate = new Date();
         currentDate.setHours(0, 0, 0, 0);
+        setHopDongID(docId);
 
         if (ngayHetHan) {
             const ngayHetHanDate = new Date(ngayHetHan as string);
@@ -124,7 +128,7 @@ function AddHopDong() {
                 alert("Vui lòng nhập đủ các trường");
             } else {
                 setFormValid(true);
-                navigate("/banghi");
+                navigate(`/banghi/${hopDongId}`);
             }
         }
         if (check === "inline-radio-2") {

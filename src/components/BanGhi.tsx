@@ -11,8 +11,10 @@ import Button from "react-bootstrap/Button";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { db, storage } from "../firebase/Firebaseconfig";
 import { v4 } from "uuid";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
+import { useParams } from "react-router-dom";
 function BanGhi() {
+    const { hopDongId } = useParams();
     const [formBG, setFormBG] = useState(false);
     const [infoBanGhi, setinfoBanGhi] = useState(true);
     const { showNav, setShowNav } = useContext(NavBarContext);
@@ -27,7 +29,7 @@ function BanGhi() {
     // let [type,setType] = useState("");
     let [nhasanxuat, setnhasanxuat] = useState("");
     let [videoUpload, setvideoUpload] = useState<File | null>(null);
-    let uploadVideo = () => {
+    let uploadVideo = async () => {
         if (videoUpload == null) return;
         const metadata = {
             contentType: "audio/mpeg",
@@ -54,7 +56,18 @@ function BanGhi() {
             });
             alert("tải video lên");
         });
+        let newRecord: any = {
+            title: title,
+            isrc: isrc,
+            tacgia: tacgia,
+            casi: casi,
+            nhasanxuat: nhasanxuat,
+        };
+        const docRef = await addDoc(collection(db, "musicID"), newRecord);
+        newRecord.id = docRef.id;
+        await updateDoc(doc(db, "musicID", docRef.id), newRecord);
     };
+    console.log("id", hopDongId);
     return (
         <div style={{ position: "relative" }}>
             <div className={styles.arrow}>

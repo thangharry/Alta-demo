@@ -11,8 +11,6 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     getAuth,
-    // setPersistence,
-    // browserLocalPersistence,
 } from "firebase/auth";
 import { auth } from "../firebase/Firebaseconfig";
 import { FirebaseError } from "firebase/app";
@@ -48,9 +46,6 @@ function LogIn() {
             setmessage("Hãy nhập tài khoản và mật khẩu");
         } else {
             try {
-                // if (remberPass) {
-                //     await setPersistence(auth, browserLocalPersistence);
-                // }
                 await createUserWithEmailAndPassword(auth, email, password);
                 setemail("");
                 setPassword("");
