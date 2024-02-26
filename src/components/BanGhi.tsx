@@ -14,6 +14,7 @@ import { v4 } from "uuid";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 function BanGhi() {
+    // const { id: hopDongId } = useParams();
     const { hopDongId } = useParams();
     const [formBG, setFormBG] = useState(false);
     const [infoBanGhi, setinfoBanGhi] = useState(true);
@@ -29,6 +30,7 @@ function BanGhi() {
     // let [type,setType] = useState("");
     let [nhasanxuat, setnhasanxuat] = useState("");
     let [videoUpload, setvideoUpload] = useState<File | null>(null);
+
     let uploadVideo = async () => {
         if (videoUpload == null) return;
         const metadata = {
@@ -52,22 +54,29 @@ function BanGhi() {
                     casi: casi,
                     nhasanxuat: nhasanxuat,
                     videoURL: downloadURL,
+                    hopDongId: hopDongId,
+                    createdAt: new Date(),
                 });
             });
+            console.log(`tên bài hát: ${title} - id hợp đồng: ${hopDongId}`);
             alert("tải video lên");
         });
+
         let newRecord: any = {
             title: title,
             isrc: isrc,
             tacgia: tacgia,
             casi: casi,
             nhasanxuat: nhasanxuat,
+            hopDongId: hopDongId,
+            createdAt: new Date(),
         };
         const docRef = await addDoc(collection(db, "musicID"), newRecord);
         newRecord.id = docRef.id;
         await updateDoc(doc(db, "musicID", docRef.id), newRecord);
     };
     console.log("id", hopDongId);
+
     return (
         <div style={{ position: "relative" }}>
             <div className={styles.arrow}>

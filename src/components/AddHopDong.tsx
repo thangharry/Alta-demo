@@ -128,7 +128,7 @@ function AddHopDong() {
                 alert("Vui lòng nhập đủ các trường");
             } else {
                 setFormValid(true);
-                navigate(`/banghi/${hopDongId}`);
+                navigate(`/banghi/${docId}`);
             }
         }
         if (check === "inline-radio-2") {
@@ -159,7 +159,7 @@ function AddHopDong() {
                 alert("Vui lòng nhập đủ các trường");
             } else {
                 setFormValid(true);
-                navigate("/banghi");
+                navigate(`/banghi`);
             }
         }
     };

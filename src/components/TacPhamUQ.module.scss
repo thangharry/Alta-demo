@@ -51,10 +51,14 @@
 .color {
     background-color: #b65100 !important;
 }
+.wrapAdd {
+    padding-bottom: 40rem;
+}
 .fillterProduct {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-right: 8rem;
     .formGroup {
         display: flex;
         label {
@@ -101,5 +105,85 @@
     }
 }
 .wrapTable {
+    position: relative;
     margin-top: 4rem;
+    // width: 92%;
+    table {
+        width: 92%;
+    }
+}
+.OptionContentAdd {
+    position: absolute;
+    top: -120px;
+    right: -8rem;
+    border-radius: 1.6rem 0 0 1.6rem;
+    background-color: #2f2f41;
+
+    padding: 1rem 0.5rem;
+    a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        & ~ a {
+            margin-top: 2rem;
+        }
+    }
+    p {
+        width: 62%;
+        margin-top: 1rem;
+        margin-bottom: 0;
+        font-size: 1.2rem;
+        color: #fff;
+        text-align: center;
+    }
+    .Add {
+        padding: 0.05rem 0.8rem;
+        background-color: rgba(114, 114, 136, 0.5);
+        font-size: 3rem;
+        color: #ff7506;
+        border-radius: 50%;
+        svg {
+            margin-bottom: 1rem;
+        }
+    }
+}
+.footerBody {
+    margin: 5rem 0;
+    .wrapBody {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+    .footerLeft {
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: #f5f5ff;
+        p {
+            span {
+                margin: 0 0.6rem;
+                padding: 0.5rem;
+                border: 0.1rem solid #ff7506;
+            }
+        }
+    }
+    .footerRight {
+        display: flex;
+        justify-content: center;
+        .pagination {
+            border: none;
+        }
+        li {
+            a {
+                border: none;
+                background-color: transparent !important;
+                color: #f5f5ff;
+                font-size: 1.4rem;
+                font-weight: 400;
+            }
+            & :active {
+                background-color: #ff750680 !important;
+            }
+        }
+    }
 }

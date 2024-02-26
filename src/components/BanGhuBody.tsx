@@ -10,48 +10,24 @@ import { storage } from "../firebase/Firebaseconfig";
 import { v4 } from "uuid";
 import { Col } from "react-bootstrap";
 import { db } from "../firebase/Firebaseconfig";
-
+import { FaList } from "react-icons/fa";
+import { FiGrid } from "react-icons/fi";
+import { FaRegEdit } from "react-icons/fa";
 function BanGhuBody() {
     let [videoUpload, setvideoUpload] = useState<File | null>(null);
     let [title, setTitle] = useState("");
     let [isrc, setisrc] = useState("");
     let [casi, setcasi] = useState("");
-
-    // let uploadVideo = () => {
-    //     if (videoUpload == null) return;
-    //     const metadata = {
-    //         contentType: "audio/mpeg",
-    //         customMetadata: {
-    //             title: title,
-    //             isrc: isrc,
-    //             casi: casi,
-    //         },
-    //     };
-    //     const videoRef = ref(storage, `images/${videoUpload.name + v4()}`);
-    //     uploadBytes(videoRef, videoUpload, metadata).then(() => {
-    //         getDownloadURL(videoRef).then((downloadURL) => {
-    //             // Lưu URL tải xuống và thông tin khác vào Firestore
-    //             const musicCollection = collection(db, "music");
-    //             addDoc(musicCollection, {
-    //                 title: title,
-    //                 isrc: isrc,
-    //                 casi: casi,
-    //                 videoURL: downloadURL,
-    //             });
-    //         });
-
-    //         alert("Tải lên video");
-    //     });
-    // };
-
-    // lấy dữ liệu
+    let [listImg, setListImg] = useState<string | null>("list");
     const [musicData, setmusicData] = useState<
         {
             id: string;
             title?: string;
             isrc?: string;
             casi?: string;
+            tacgia?: string;
             videoURL?: string;
+            createdAt?: any;
         }[]
     >([]);
     useEffect(() => {
@@ -68,52 +44,76 @@ function BanGhuBody() {
     }, []);
     return (
         <div className={styles.body_Table}>
-            <div className={styles.wrap_input}>
-                <Form.Group
-                    controlId="formGridState"
-                    className={styles.GroupInput}
-                >
-                    <Form.Label>Thể loại</Form.Label>
-                    <Form.Select defaultValue="Tất cả">
-                        <option>Tất cả</option>
-                        <option>Pop</option>
-                        <option>EDM</option>
-                        <option>Ballad</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group
-                    controlId="formGridState"
-                    className={styles.GroupInput}
-                >
-                    <Form.Label>Định dạng</Form.Label>
-                    <Form.Select defaultValue="Tất cả">
-                        <option>Tất cả</option>
-                        <option>Âm thanh</option>
-                        <option>Video</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group
-                    controlId="formGridState"
-                    className={styles.GroupInput}
-                >
-                    <Form.Label>Thời hạn sử dụng</Form.Label>
-                    <Form.Select defaultValue="Tất cả">
-                        <option>Tất cả</option>
-                        <option>Còn thời hạn</option>
-                        <option>Thời hạn</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group
-                    controlId="formGridState"
-                    className={styles.GroupInput}
-                >
-                    <Form.Label>Trạng thái</Form.Label>
-                    <Form.Select defaultValue="Tất cả">
-                        <option>Tất cả</option>
-                        <option>Duyệt bởi người dùng</option>
-                        <option>Duyệt tự động</option>
-                    </Form.Select>
-                </Form.Group>
+            <div className={styles.colChose}>
+                <div className={styles.wrap_input}>
+                    <Form.Group
+                        controlId="formGridState"
+                        className={styles.GroupInput}
+                    >
+                        <Form.Label>Thể loại</Form.Label>
+                        <Form.Select defaultValue="Tất cả">
+                            <option>Tất cả</option>
+                            <option>Pop</option>
+                            <option>EDM</option>
+                            <option>Ballad</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group
+                        controlId="formGridState"
+                        className={styles.GroupInput}
+                    >
+                        <Form.Label>Định dạng</Form.Label>
+                        <Form.Select defaultValue="Tất cả">
+                            <option>Tất cả</option>
+                            <option>Âm thanh</option>
+                            <option>Video</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group
+                        controlId="formGridState"
+                        className={styles.GroupInput}
+                    >
+                        <Form.Label>Thời hạn sử dụng</Form.Label>
+                        <Form.Select defaultValue="Tất cả">
+                            <option>Tất cả</option>
+                            <option>Còn thời hạn</option>
+                            <option>Thời hạn</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group
+                        controlId="formGridState"
+                        className={styles.GroupInput}
+                    >
+                        <Form.Label>Trạng thái</Form.Label>
+                        <Form.Select defaultValue="Tất cả">
+                            <option>Tất cả</option>
+                            <option>Duyệt bởi người dùng</option>
+                            <option>Duyệt tự động</option>
+                        </Form.Select>
+                    </Form.Group>
+                </div>
+                <div className={styles.chooseStyles}>
+                    <span className={styles.IconStyles}>
+                        <FaList
+                            onClick={() => setListImg("list")}
+                            className={listImg === "list" ? styles.color : ""}
+                        />
+                    </span>
+                    <span className={styles.IconStyles}>
+                        <FiGrid
+                            onClick={() => setListImg("IMG")}
+                            className={listImg === "IMG" ? styles.color : ""}
+                        />
+                    </span>
+                </div>
+                <div className={styles.QlPD}>
+                    <Link to="/addHopDong">
+                        <span className={styles.Add}>
+                            <FaRegEdit />
+                        </span>
+                        <p>Quản lý phê duyệt</p>
+                    </Link>
+                </div>
             </div>
 
             <div className={styles.wrap_table}>
@@ -135,6 +135,36 @@ function BanGhuBody() {
                     </thead>
                     <tbody>
                         {musicData.map((music, index) => {
+                            //  let dateString = "";
+                            //  if (music.createdAt) {
+                            //      const dateOptions = {
+                            //          year: "numeric",
+                            //          month: "2-digit",
+                            //          day: "2-digit",
+                            //          hour: "2-digit",
+                            //          minute: "2-digit",
+                            //          second: "2-digit",
+                            //      };
+                            //      dateString =
+                            //          music.createdAt.toLocaleDateString(
+                            //              "vi-VN",
+                            //              dateOptions
+                            //          );
+
+                            // }
+                            const dateOptions = {
+                                year: "numeric",
+                                month: "2-digit",
+                                day: "2-digit",
+                            };
+                            let dateString = "";
+                            if (music.createdAt) {
+                                const date = music.createdAt.toDate();
+                                dateString = music.createdAt.toLocaleDateString(
+                                    "vi-VN",
+                                    dateOptions
+                                );
+                            }
                             return (
                                 <tr key={index}>
                                     <td>{index + 1}</td>
@@ -142,13 +172,13 @@ function BanGhuBody() {
                                     <td>{music.isrc}</td>
                                     <td>04:27</td>
                                     <td>{music.casi}</td>
-                                    <td>{music.casi}</td>
+                                    <td>{music.tacgia}</td>
 
                                     <td>Ballad</td>
                                     <td>Audio</td>
                                     <td>
                                         Còn thời hạn <br />{" "}
-                                        <span>02/10/2022</span>
+                                        <span>{dateString}</span>
                                     </td>
                                     <td>
                                         <Link to="">Cập nhật</Link>
@@ -162,43 +192,6 @@ function BanGhuBody() {
                     </tbody>
                 </Table>
             </div>
-
-            {/* <div className={styles.uploadFile}>
-                <input
-                    type="text"
-                    placeholder="Tên bài hát"
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Mã ISRC"
-                    onChange={(e) => setisrc(e.target.value)}
-                />
-                <input
-                    type="text"
-                    placeholder="Ca sĩ"
-                    onChange={(e) => setcasi(e.target.value)}
-                />
-                <Form.Group as={Col} controlId="formGridState">
-                    <Form.Label>Thể loại</Form.Label>
-                    <Form.Select defaultValue="Chọn một thể loại">
-                        <option>Chọn một thể loại</option>
-                        <option>Rap</option>
-                        <option>Ballad</option>
-                        <option>Rock n roll</option>
-                        <option>R&B</option>
-                    </Form.Select>
-                </Form.Group>
-                <input
-                    type="file"
-                    onChange={(e) => {
-                        if (e.target.files) {
-                            setvideoUpload(e.target.files[0]);
-                        }
-                    }}
-                />
-                <button onClick={() => uploadVideo()}>tải video lên</button>
-            </div> */}
         </div>
     );
 }
