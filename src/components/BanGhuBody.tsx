@@ -19,6 +19,8 @@ function BanGhuBody() {
     let [isrc, setisrc] = useState("");
     let [casi, setcasi] = useState("");
     let [listImg, setListImg] = useState<string | null>("list");
+    // let [listShow,setlistShow] = useState(true)
+    // let [listIMGShow,setlistIMGShow] = useState(false)
     const [musicData, setmusicData] = useState<
         {
             id: string;
@@ -116,82 +118,58 @@ function BanGhuBody() {
                 </div>
             </div>
 
-            <div className={styles.wrap_table}>
-                <Table striped bordered hover>
-                    <thead>
-                        <tr>
-                            <th>STT</th>
-                            <th>Tên bản ghi</th>
-                            <th>Mã ISRC</th>
-                            <th>Thời lượng</th>
-                            <th>Ca sĩ</th>
-                            <th>Tác giả</th>
-                            <th>Thể loại</th>
-                            <th>Định dạng</th>
-                            <th>Thời hạn sử dụng</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {musicData.map((music, index) => {
-                            //  let dateString = "";
-                            //  if (music.createdAt) {
-                            //      const dateOptions = {
-                            //          year: "numeric",
-                            //          month: "2-digit",
-                            //          day: "2-digit",
-                            //          hour: "2-digit",
-                            //          minute: "2-digit",
-                            //          second: "2-digit",
-                            //      };
-                            //      dateString =
-                            //          music.createdAt.toLocaleDateString(
-                            //              "vi-VN",
-                            //              dateOptions
-                            //          );
+            {listImg === "list" && (
+                <div className={styles.wrap_table}>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên bản ghi</th>
+                                <th>Mã ISRC</th>
+                                <th>Thời lượng</th>
+                                <th>Ca sĩ</th>
+                                <th>Tác giả</th>
+                                <th>Thể loại</th>
+                                <th>Định dạng</th>
+                                <th>Thời hạn sử dụng</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {musicData.map((music, index) => {
+                                const createdAt = new Date(
+                                    music.createdAt?.seconds * 1000
+                                ).toLocaleDateString("vi-VN");
+                                return (
+                                    <tr key={index}>
+                                        <td>{index + 1}</td>
+                                        <td>{music.title}</td>
+                                        <td>{music.isrc}</td>
+                                        <td>04:27</td>
+                                        <td>{music.casi}</td>
+                                        <td>{music.tacgia}</td>
 
-                            // }
-                            const dateOptions = {
-                                year: "numeric",
-                                month: "2-digit",
-                                day: "2-digit",
-                            };
-                            let dateString = "";
-                            if (music.createdAt) {
-                                const date = music.createdAt.toDate();
-                                dateString = music.createdAt.toLocaleDateString(
-                                    "vi-VN",
-                                    dateOptions
+                                        <td>Ballad</td>
+                                        <td>Audio</td>
+                                        <td>
+                                            Còn thời hạn <br />{" "}
+                                            <span>{createdAt}</span>
+                                        </td>
+                                        <td>
+                                            <Link to="">Cập nhật</Link>
+                                        </td>
+                                        <td>
+                                            <Link to="">Nghe</Link>
+                                        </td>
+                                    </tr>
                                 );
-                            }
-                            return (
-                                <tr key={index}>
-                                    <td>{index + 1}</td>
-                                    <td>{music.title}</td>
-                                    <td>{music.isrc}</td>
-                                    <td>04:27</td>
-                                    <td>{music.casi}</td>
-                                    <td>{music.tacgia}</td>
-
-                                    <td>Ballad</td>
-                                    <td>Audio</td>
-                                    <td>
-                                        Còn thời hạn <br />{" "}
-                                        <span>{dateString}</span>
-                                    </td>
-                                    <td>
-                                        <Link to="">Cập nhật</Link>
-                                    </td>
-                                    <td>
-                                        <Link to="">Nghe</Link>
-                                    </td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </Table>
-            </div>
+                            })}
+                        </tbody>
+                    </Table>
+                </div>
+            )}
+            {listImg === "IMG" && <h1>hello</h1>}
         </div>
     );
 }

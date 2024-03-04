@@ -1,0 +1,122 @@
+.arrow {
+    position: absolute;
+    top: -15rem;
+    z-index: 2;
+
+    background-color: #020220;
+    display: flex;
+    align-items: center;
+    min-height: calc(100% + 15rem);
+    button {
+        background-color: transparent;
+        border: none;
+    }
+    svg {
+        color: #ff7506;
+        font-size: 3rem;
+    }
+}
+.bodyAdd {
+    color: #fff;
+    margin-left: 8rem;
+    padding-bottom: 32rem;
+    h1 {
+        margin-bottom: 4rem;
+        font-size: 3.6rem;
+        font-weight: 700;
+    }
+}
+.wrapInfo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8rem;
+    p {
+        font-size: 1.6rem;
+        b {
+            font-weight: 700;
+        }
+    }
+}
+.wrapTable {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    p {
+        font-size: 1.6rem;
+        b {
+            font-weight: 700;
+        }
+    }
+}
+.contentMainBody {
+    position: relative;
+
+    .OptionContentAdd {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        border-radius: 1.6rem 0 0 1.6rem;
+        background-color: #2f2f41;
+
+        padding: 1rem 0.5rem;
+        a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            & ~ a {
+                margin-top: 2rem;
+            }
+        }
+        p {
+            width: 70%;
+            margin-top: 1rem;
+            margin-bottom: 0;
+            font-size: 1.2rem;
+            color: #fff;
+            text-align: center;
+        }
+        .Add {
+            padding: 0.05rem 0.8rem;
+            background-color: rgba(114, 114, 136, 0.5);
+            font-size: 3rem;
+            color: #ff7506;
+            border-radius: 50%;
+            svg {
+                margin-bottom: 1rem;
+            }
+        }
+    }
+}
+.wrapInfo,
+.wrapTable {
+    margin-right: 17rem;
+}
+.file {
+    display: flex;
+    align-items: center;
+    .inputFile {
+        display: none;
+    }
+    p {
+        margin-right: 1rem;
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+    .Uploadfile {
+        border: 0.1rem solid #ffac69;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.5rem;
+        label {
+            cursor: pointer;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffac69;
+            svg {
+                margin-right: 0.5rem;
+            }
+        }
+    }
+}

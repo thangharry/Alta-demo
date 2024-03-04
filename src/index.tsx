@@ -18,6 +18,9 @@ import AddHopDong from "./components/AddHopDong";
 import BanGhi from "./components/BanGhi";
 import DetailHopDong from "./components/DetailHopDong";
 import TacPhamUQ from "./components/TacPhamUQ";
+import HDKT from "./components/HDKT";
+import DetailHDKT from "./components/DetailHDKT";
+import ChinhSuaHDKT from "./components/ChinhSuaHDKT";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement
@@ -47,6 +50,10 @@ root.render(
                         element={<DetailHopDong />}
                     />
                     <Route path="TacPhamUyQuyen/:id" element={<TacPhamUQ />} />
+
+                    <Route path="HDKT" element={<HDKT />} />
+                    <Route path="DetailHDKT" element={<DetailHDKT />} />
+                    <Route path="ChinhSuaHDKT" element={<ChinhSuaHDKT />} />
 
                     {/* <Route path="Kho bản ghi" element={<KhoBanGhi />} /> */}
                 </Route>

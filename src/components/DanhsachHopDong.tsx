@@ -101,7 +101,7 @@ function DanhsachHopDong() {
                         }
                         onClick={() => setSelectedBTN("uyQuyen")}
                     >
-                        <Link to="/">Hợp đồng ủy quyền</Link>
+                        <Link to="/Quản lý hợp đồng">Hợp đồng ủy quyền</Link>
                     </button>
                     <button
                         className={
@@ -109,7 +109,7 @@ function DanhsachHopDong() {
                         }
                         onClick={() => setSelectedBTN("khaiThac")}
                     >
-                        <Link to="/">Hợp đồng khai thác</Link>
+                        <Link to="/HDKT">Hợp đồng khai thác</Link>
                     </button>
                 </div>
             </div>
